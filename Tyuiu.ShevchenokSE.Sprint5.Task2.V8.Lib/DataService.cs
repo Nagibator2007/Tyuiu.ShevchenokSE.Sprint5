@@ -5,9 +5,8 @@ namespace Tyuiu.ShevchenokSE.Sprint5.Task2.V8.Lib
     {
         public string SaveToFileTextData(int[,] matrix)
         {
-            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask2.txt";
+            string path = $@"{Path.GetTempPath()}\OutPutFileTask0.txt";
             string str = "";
-
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int count = 0, j = 0; j < matrix.GetLength(1); j++, count++)
