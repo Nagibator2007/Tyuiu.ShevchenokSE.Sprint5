@@ -6,31 +6,53 @@ namespace Tyuiu.ShevchenokSE.Sprint5.Task2.V8.Lib
     {
         public string SaveToFileTextData(int[,] matrix)
         {
-            string path = $@"{Path.GetTempPath()}\OutPutFileTask0.txt";
-            string str = "";
-
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            string path = Path.Combine(new string[] { Path.GetTempPath(), "OutPutFileTask2.csv" });
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
+            if (fileExists)
             {
-                for (int count = 0, j = 0; j < matrix.GetLength(1); j++, count++)
+                File.Delete(path);
+            }
+            int rows = matrix.GetUpperBound(0) + 1;
+            int columns = matrix.Length / rows;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
                 {
-                    if (matrix[i, j] < 0)
-                    {
-                        matrix[i, j] = 0;
-                    }
-                    else if (matrix[i, j] > 0)
+                    if (matrix[i, j] > 0)
                     {
                         matrix[i, j] = 1;
                     }
-                    if (count != 2)
+                    else if (matrix[i, j] < 0)
                     {
-                        str += matrix[i, j].ToString() + ";";
+                        matrix[i, j] = 0;
+                    }
+
+                }
+            }
+            string str = "";
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    if (j != columns - 1)
+                    {
+                        str = str + matrix[i, j] + ";";
                     }
                     else
                     {
-                        str += matrix[i, j].ToString() + ";";
+                        str = str + matrix[i, j];
                     }
                 }
-                File.WriteAllText(path, str);
+                if (i != rows - 1)
+                {
+                    File.AppendAllText(path, str + Environment.NewLine);
+                }
+                else
+                {
+                    File.AppendAllText(path, str);
+                }
+                str = "";
             }
             return path;
         }
