@@ -7,7 +7,7 @@ namespace Tyuiu.ShevchenokSE.Sprint5.Task2.V8.Test
         [TestMethod]
         public void TestMethod1()
         {
-            string path = @"C:\Users\sergejbabidzonov\Desktop\source\repos\Tyuiu.ShevchenokSE.Sprint5\Tyuiu.ShevchenokSE.Sprint5.Task2.V15\bin\Debug\net8.0\OutPutFileTask2.txt"; 
+            string path = @"C:\Users\sergejbabidzonov\Desktop\source\repos\Tyuiu.ShevchenokSE.Sprint5\Tyuiu.ShevchenokSE.Sprint5.Task2.V8\bin\Debug\net8.0\OutPutFileTask2.txt"; 
             FileInfo fileInfo = new FileInfo(path);
             bool fileExists = fileInfo.Exists;
             bool wait = true;
