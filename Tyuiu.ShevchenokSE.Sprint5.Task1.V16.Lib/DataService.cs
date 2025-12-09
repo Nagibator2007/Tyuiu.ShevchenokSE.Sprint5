@@ -5,37 +5,19 @@ namespace Tyuiu.ShevchenokSE.Sprint5.Task1.V16.Lib
     {
         public string SaveToFileTextData(int startValue, int stopValue)
         {
-            string path = Path.GetTempFileName();
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
-            if (fileExists)
-            {
-                File.Delete(path);
-            }
-            double y;
-            string strY;
-            for (int x = startValue; x <= stopValue; x++)
-            {
-                double zero = 2 * x - 0.5;
-                if (zero == 0)
-                {
-                    return Convert.ToString(0);
-                }
-                else
-                {
-                    y = Math.Round(Math.Sin(x) + (2 * x) / 3 - Math.Cos(x) * 4 * x, 2);
-                }
-                strY = Convert.ToString(y);
+            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask1.txt");
 
-                if (x != stopValue)
-                {
-                    File.AppendAllText(path, strY + Environment.NewLine);
-                }
-                else
-                {
-                    File.AppendAllText(path, strY);
-                }
+            while (startValue <= stopValue)
+            {
+                double result = Math.Sin(startValue) + (2 * startValue) / 3 - Math.Cos(startValue) * 4 * startValue;
+                if (double.IsInfinity(result) || double.IsNaN(result))
+                    result = 0;
+                result = Math.Round(result, 2);
+
+                File.AppendAllText(path, $"{result.ToString()}\n");
+                startValue++;
             }
+
             return path;
         }
     }
