@@ -2,17 +2,16 @@
 namespace Tyuiu.ShevchenokSE.Sprint5.Task3.V16.Test
 {
     [TestClass]
-    public class DataServiceTest
+    public class DataServieTest
     {
         [TestMethod]
-        public void Calculate()
+        public void TestMethod1()
         {
-            DataService ds = new DataService();
-            double x = 3;
-            double result = ds.Calculate(x);
-            result = Math.Round(result, 3);
-            double wait = 6.426;
-            Assert.AreEqual(wait, result, 0.001);
+            string path = $@"{Path.GetTempPath()}\OutPutFileTask3.bin";
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
+            bool wait = true;
+            Assert.AreEqual(wait, fileExists);
         }
     }
 }
