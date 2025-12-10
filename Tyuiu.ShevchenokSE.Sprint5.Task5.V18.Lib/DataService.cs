@@ -5,24 +5,22 @@ namespace Tyuiu.ShevchenokSE.Sprint5.Task5.V18.Lib
     {
         public double LoadFromDataFile(string path)
         {
-            double product = 1.0;
-            using (StreamReader reader = new StreamReader(path))
+            string[] strNum = File.ReadAllLines(path);
+            for (int i = 0; i < strNum.Length; i++)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                strNum[i] = strNum[i].Replace('.', ',');
+            }
+            double[] nums = Array.ConvertAll(strNum[0].Split(' '), double.Parse);
+            double res = 1;
+            foreach (double num in nums)
+            {
+                if (num >= 10 && num <= 99)
                 {
-                    if (double.TryParse(line, out double number))
-                    {
-                        int integerValueForCheck = (int)Math.Round(number);
-                        if ((integerValueForCheck >= 10 && integerValueForCheck <= 99) ||
-                            (integerValueForCheck >= -99 && integerValueForCheck <= -10))
-                        {
-                            product *= number;
-                        }
-                    }
+                    res *= num;
+
                 }
             }
-            return Math.Round(product, 3);
+            return Math.Round(res, 3);
         }
     }
 }
