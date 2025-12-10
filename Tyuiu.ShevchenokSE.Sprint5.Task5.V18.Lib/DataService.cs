@@ -5,27 +5,22 @@ namespace Tyuiu.ShevchenokSE.Sprint5.Task5.V18.Lib
     {
         public double LoadFromDataFile(string path)
         {
-            double product = 1;
-            bool foundTwoDigitNumber = false;
+            double product = 1.0;
             using (StreamReader reader = new StreamReader(path))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    if (double.TryParse(line.Trim(), out double number))
+                    if (double.TryParse(line, out double number))
                     {
-                        if ((number >= 10 && number <= 99) || (number <= -10 && number >= -99))
+                        int integerValueForCheck = (int)Math.Round(number);
+                        if ((integerValueForCheck >= 10 && integerValueForCheck <= 99) ||
+                            (integerValueForCheck >= -99 && integerValueForCheck <= -10))
                         {
-                            number = Math.Round(number, 3);
                             product *= number;
-                            foundTwoDigitNumber = true;
                         }
                     }
                 }
-            }
-            if (!foundTwoDigitNumber)
-            {
-                return 0;
             }
             return Math.Round(product, 3);
         }
