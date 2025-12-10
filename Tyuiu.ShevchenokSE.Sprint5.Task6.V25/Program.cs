@@ -6,7 +6,7 @@ namespace Tyuiu.ShevchenokSE.Sprint5.Task6.V25
         static void Main(string[] args)
         {
             DataService ds = new DataService();
-            Console.Title = "Спринт #5 | Выполнил: Шевченок С.Е   | СМАРТб-25-1";
+            Console.Title = "Спринт #5 | Выполнил: Шевченок С.Е   | СМАРТб-25-1"; 
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Спринт #5                                                               *");
             Console.WriteLine("* Тема: Обработка текстовых файлов                                        *");
